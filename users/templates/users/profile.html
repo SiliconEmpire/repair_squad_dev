@@ -1,0 +1,82 @@
+{% extends 'repairsquad_home_app/base.html' %} {% load static %} {% block profile_content %}
+
+<div class="card-panel teal lighten-5">
+    <div class="center-align">
+        <h4>Hello, {{user.username}}</h4>
+        <div class="title-underline teal darken-2"></div>
+    </div>
+    <small class="">Note that your details serves as your identity in our database and
+        it's important that they are valid, if they are not, click on the respective icons bellow to <br> Open <i
+            class="material-icons teal-text text-darken-2">open_with</i> Edit <i
+            class="material-icons teal-text text-darken-2">edit</i> Add <i
+            class="material-icons teal-text text-darken-2">add</i> and/or Delete <i
+            class="material-icons red-text">delete</i> them.
+    </small>
+    <br />
+    <!-- <a class="waves-effect waves-light btn-small purple darken-2" href="">Update</a> -->
+</div>
+
+<div class="row">
+    <div class="col s10 offset-s1 card-panel ">
+        <div class="section"></div>
+        <div class="row">
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ACCOUNT DETAILS section   @@@@@@@@@@@@@@@@@@@ -->
+            <div class="col s12 m6 l4">
+                <ul class="collection with-header">
+                    <li class="collection-header teal lighten-5">
+                        <h5>ACCOUNT DETAILS
+                            <a href="{% url 'profile_update' %}" class="secondary-content">
+                                <i class="material-icons teal-text text-darken-2">edit</i>
+                            </a>
+                        </h5>
+                    </li>
+                    <li class="collection-item teal lighten-5">
+                        <span class="title">Name:</span>
+                        <p>
+                            {{user.username}}
+                        </p>
+                    </li>
+                    <li class="collection-item teal lighten-5">
+                        <span class="title">email:</span>
+                        <p>
+                            {{user.email}}
+                        </p>
+                    </li>
+                    <li class="collection-item teal lighten-5">
+                        <span class="title">Phone Number:</span>
+                        <p>
+                            {{user.profile.phone_number}}
+                        </p>
+                    </li>
+                    <li class="collection-item teal lighten-5">
+                        <span class="title">Adress:</span>
+                        <p>
+                            {{user.profile.address}}
+                        </p>
+                    </li>
+                    <li class="collection-item teal lighten-5">
+                        <span class="title">City:</span>
+                        <p>
+                            {{user.profile.city}}
+                        </p>
+                    </li>
+                    <li class="collection-item teal lighten-5">
+                        <span class="title">State:</span>
+                        <p>
+                            {{user.profile.state}}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@   END of ACCOUNT DETAILS section   @@@@@@@@@@@@@@@@@@@ -->
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal_obj = document.querySelectorAll('.modal');
+    M.Modal.init(modal_obj, {
+    });
+</script>
+{% endblock profile_content %}

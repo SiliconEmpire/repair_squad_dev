@@ -1,0 +1,35 @@
+{% extends 'repairsquad_home_app/base.html' %} {% load materializecss %} {% block profile_update_content %}
+
+<div class="row">
+    <div class=" col s10 offset-s1 m6 offset-m3">
+        <div class="card-panel teal lighten-5">
+            <form method="POST">
+                {% csrf_token %}
+
+                <h5>
+                    <legend class="">Update Your Profile</legend>
+                </h5>
+                <div class="divider">
+                </div>
+                <div class="section">
+                </div>
+                {{u_u_form|materializecss}} {{p_u_form|materializecss}}
+
+                <div class="">
+                    <button class="btn teal darken-2 waves-effect waves-light" type="submit">
+                        Update
+                    </button>
+                    <div class="section">
+                    </div>
+                </div>
+                <div class="divider">
+                </div>
+                <div class="section">
+
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock profile_update_content %}

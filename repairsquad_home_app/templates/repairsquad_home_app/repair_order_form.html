@@ -1,0 +1,35 @@
+{% extends 'repairsquad_home_app/base.html' %}
+{% load static %}
+{% load materializecss %}
+{% block repair_order_content %}
+<div class="row">
+    <div class=" col s10 offset-s1 m6 offset-m3">
+        <div class="card-panel teal lighten-5">
+            <form method="POST">
+                {% csrf_token %}
+                <h5>
+                    <legend class="">LOREM</legend>
+                </h5>
+                <div class="divider">
+                </div>
+                <div class="section">
+                </div>
+                {{ repair_order_form|materializecss }}
+                <div class="section">
+                </div>
+                <div class="section">
+                </div>
+                <div class="divider">
+                </div>
+                <div class="">
+                    
+                    <button class="btn teal darken-2 waves-effect waves-light" type="submit">Submit Order</button>
+                </div>
+
+                <div class="section">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock repair_order_content %}

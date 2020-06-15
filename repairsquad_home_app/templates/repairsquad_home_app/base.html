@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{{page_tittle}}-Repair Squad</title>
+    <link rel="shortcut icon" href="{% static 'sky_squad_home_app/img/sky_squad_logos/skySquadFavicon.png' %}" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- main css -->
+    <link rel="stylesheet" type="text/css" href="{%static 'sky_squad_home_app/css/main.css'%}">
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/019a20aa61.js" crossorigin="anonymous"></script>
+
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Cuprum:700i&display=swap" rel="stylesheet">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body class="grey-text text-darken-3">
+
+    <header>
+        <!-- Starting of Navbar -->
+        {% include 'repairsquad_home_app/includes/navbar.html' %}
+        <!-- End of Navbar -->
+
+        <!-- Starting of messeges -->
+        {% include 'repairsquad_home_app/includes/messeges.html' %}
+        <!-- End of messeges -->
+    </header>
+
+    <main>
+        <!-- Starting of home_content -->
+        {% block home_content %} {% endblock home_content %}
+        <!-- End of home_content -->
+
+        <!-- Starting of reg_content -->
+        {% block reg_content %} {% endblock reg_content %}
+        <!-- End of reg_content -->
+
+        <!-- Starting of login_content -->
+        {% block login_content %} {% endblock login_content %}
+        <!-- End of login_content -->
+
+        <!-- Starting of profile_content -->
+        {% block profile_content %} {% endblock profile_content %}
+        <!-- End of profile_content -->
+
+        <!-- Starting of logout_content -->
+        {% block logout_content %} {% endblock logout_content %}
+        <!-- End of logout_content -->
+
+        <!-- Starting of password_reset_content -->
+        {% block password_reset_content %} {% endblock password_reset_content %}
+        <!-- End of password_reset_content -->
+
+        <!-- Starting of password_reset_done_content -->
+        {% block password_reset_done_content %} {% endblock password_reset_done_content %}
+        <!-- End of password_reset_done_content -->
+
+        <!-- Starting of password_reset_confirm_content -->
+        {% block password_reset_confirm_content %} {% endblock password_reset_confirm_content %}
+        <!-- End of password_reset_confirm_content -->
+
+        <!-- Starting of password_reset_complete_content -->
+        {% block password_reset_complete_content %} {% endblock password_reset_complete_content %}
+        <!-- End of password_reset_complete_content -->
+
+        <!-- Starting of profile_update_content -->
+        {% block profile_update_content %} {% endblock profile_update_content %}
+        <!-- End of profile_update_content --> 
+
+        <!-- Starting of quick_repair_order_content -->
+        {% block quick_repair_order_content %} {% endblock quick_repair_order_content %}
+        <!-- End of quick_repair_order_content --> 
+
+        <!-- Starting of repair_order_content -->
+        {% block repair_order_content %} {% endblock repair_order_content %}
+        <!-- End of repair_order_content -->
+
+    </main>
+
+
+
+
+</body>
+
+</html>

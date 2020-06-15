@@ -1,0 +1,41 @@
+{% extends 'repairsquad_home_app/base.html' %}
+{% load materializecss %}
+
+{% block login_content %}
+<div class="row">
+    <div class=" col s10 offset-s1 m6 offset-m3">
+        <div class="card-panel teal lighten-5">
+            <form method="POST">
+                {% csrf_token %}
+                <h5>
+                    <legend class="">Log In</legend>
+                </h5>
+                <div class="divider">
+                </div>
+                <div class="section">
+                </div>
+                {{ form|materializecss }}
+
+                <div class="">
+                    <button class="btn teal darken-2 waves-effect waves-light" type="submit">Login</button>
+                    <small class="">
+                        <a href="{% url 'password_reset' %}" class="red-text">Forgot Password?</a>
+                    </small>
+                </div>
+
+                <div class="section">
+                </div>
+            </form>
+            <div class="divider">
+            </div>
+            <div class="section">
+                <small class="">
+                    Need An Account? <a class="red-text" href="{% url 'register' %}">Sign Up Now</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock login_content %}
+<!-- {% url 'password_reset' %} -->
