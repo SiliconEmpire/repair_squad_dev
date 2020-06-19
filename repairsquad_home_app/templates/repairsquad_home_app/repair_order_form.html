@@ -8,13 +8,17 @@
             <form method="POST">
                 {% csrf_token %}
                 <h5>
-                    <legend class="">LOREM</legend>
+                    <legend class="">Fill Out Form Below To Place Your Repair Order</legend>
                 </h5>
                 <div class="divider">
                 </div>
                 <div class="section">
                 </div>
+                {{p_u_form|materializecss}}
                 {{ repair_order_form|materializecss }}
+                &nbsp &nbsp &nbsp &nbsp &nbsp 
+                    <a href="#">Terms and Conditions</a>
+                
                 <div class="section">
                 </div>
                 <div class="section">
@@ -22,8 +26,8 @@
                 <div class="divider">
                 </div>
                 <div class="">
-                    
-                    <button class="btn teal darken-2 waves-effect waves-light" type="submit">Submit Order</button>
+
+                    <button class="btn teal darken-2 waves-effect waves-light" type="submit">Submit Order<i class="material-icons right">send</i></button>
                 </div>
 
                 <div class="section">
@@ -32,4 +36,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    const datepicker_obj = document.querySelector('datepicker');
+    M.Datepicker.init(datepicker_obj, { 'format': 'yyyy-mm-dd' });
+
+    const select_obj = document.querySelector('select');
+    M.FormSelect.init(select_obj, {});
+
+
+
+
+</script>
 {% endblock repair_order_content %}

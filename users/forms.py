@@ -31,6 +31,32 @@ class ProfileUpdateForm(forms.ModelForm):
                                 }
                             )
                         )
+    pick_up_address = forms.CharField(
+                        required=True,
+                        widget=forms.Textarea(
+                                attrs={
+                                    "placeholder": "Our courier picks up the gadget from this address",
+                                }
+                            )
+                        )
+    state = forms.CharField(
+                        required=True, 
+                        widget=forms.TextInput(
+                                attrs={
+                                    "placeholder": "e.g LAGOS",
+                                }
+                            )
+                        )
+    
+    city = forms.CharField(
+                        required=True, 
+                        widget=forms.TextInput(
+                                attrs={
+                                    "placeholder": "e.g LAGOS",
+                                }
+                            )
+                        )
+    
     class Meta:
         model = Profile
-        fields = ['phone_number', 'address', 'state', 'city']
+        fields = ['phone_number', 'pick_up_address', 'state', 'city']

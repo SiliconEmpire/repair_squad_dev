@@ -7,10 +7,8 @@
     </div>
     <small class="">Note that your details serves as your identity in our database and
         it's important that they are valid, if they are not, click on the respective icons bellow to <br> Open <i
-            class="material-icons teal-text text-darken-2">open_with</i> Edit <i
-            class="material-icons teal-text text-darken-2">edit</i> Add <i
-            class="material-icons teal-text text-darken-2">add</i> and/or Delete <i
-            class="material-icons red-text">delete</i> them.
+            class="material-icons teal-text text-darken-2">open_with</i> or Edit <i
+            class="material-icons teal-text text-darken-2">edit</i> them.
     </small>
     <br />
     <!-- <a class="waves-effect waves-light btn-small purple darken-2" href="">Update</a> -->
@@ -70,6 +68,81 @@
                 </ul>
             </div>
             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@   END of ACCOUNT DETAILS section   @@@@@@@@@@@@@@@@@@@ -->
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ORDER section   @@@@@@@@@@@@@@@@@@@ -->
+            {% if repairOrder_qs %}
+            <div class="card-panel col s12 m6 l8">
+                <ul class="collection with-header">
+                    <li class="collection-header">
+                        <h4>Oders ({{ page_obj.paginator.count }})</h4>
+                        
+                    </li>
+                    {% for order in repairOrder_qs %}
+
+                    <li class="collection-item">
+                        <div> <span class="teal-text text-darken-2">Device Type:</span> {{order.device_type}} <br /> <span class="teal-text text-darken-2">Placed On:</span> {{order.order_date}}<br /> <span class="teal-text text-darken-2">Order ID:</span> {{order.order_id}}
+                            <br /><span class="teal-text text-darken-2">Order Status:</span> {{order.order_tracking}}<a href="#{{order.id}}_view" class="secondary-content modal-trigger "><i
+                                    class="material-icons ">open_with</i></a></div>
+                    </li>
+
+                    <!-- droneDel Modal Structure -->
+                    {% include 'users/includes/orderDetailModalStructure.html' %}
+
+                {% endfor %}
+                
+            </ul>
+
+
+            {% if is_paginated %}
+            <ul class="pagination">
+
+            {% if page_obj.has_previous %}
+              <!-- <a class="" href="?page=1">First</a> -->
+              <li class="waves-effect"><a href="?page=1"><i class="material-icons">first_page</i></a></li>
+              <!-- <a class="" href="?page={{ page_obj.previous_page_number }}">Previous</a> -->
+              <li class="waves-effect"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a></li>
+            {% endif %}
+      
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <!-- <a class="" href="?page={{ num }}">{{ num }}</a> -->
+                <li class="active teal darken-2"><a href="?page={{ num }}">{{ num }}</a></li>
+              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <!-- <a class="" href="?page={{ num }}">{{ num }}</a> -->
+                <li class="waves-effect"><a href="?page={{ num }}">{{ num }}</a></li>
+              {% endif %}
+            {% endfor %}
+      
+            {% if page_obj.has_next %}
+              <!-- <a class="" href="?page={{ page_obj.next_page_number }}">Next</a> -->
+              <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a></li>
+              <!-- <a class="" href="?page={{ page_obj.paginator.num_pages }}">Last</a> -->
+              <li class="waves-effect"><a href="?page={{ page_obj.paginator.num_pages }}"><i class="material-icons">last_page</i></a></li>
+            {% endif %}
+
+        </ul>
+      
+          {% endif %}
+
+
+            </div>
+            {% else %}
+            <div class="card-panel col s12 m6 l8">
+                <ul class="collection with-header">
+                    <li class="collection-header">
+                        <h4>Oders (0)</h4>
+                    </li>
+                    <li class="collection-item">
+                        <div>
+                            <h5>
+                                YOU HAVE NEVER REQUESTED FOR ANY OF OUR SERVICES.
+                            </h5>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@   END of ORDER section   @@@@@@@@@@@@@@@@@@@ -->
         </div>
     </div>
 </div>

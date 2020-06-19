@@ -6,8 +6,8 @@ from .utils import unique_repair_order_id_generator
 
 @receiver(pre_save, sender=RepairOrderModel)
 def update_repai_order_id(sender, instance, **kwargs):
-    if instance.serviceReq_id == "":
-        instance.serviceReq_id = unique_repair_order_id_generator(instance)
+    if instance.order_id == "":
+        instance.order_id = unique_repair_order_id_generator(instance)
 
 # @receiver(pre_save, sender=ServiceReqModel)
 # def save_profile(sender, instance, **kwargs):

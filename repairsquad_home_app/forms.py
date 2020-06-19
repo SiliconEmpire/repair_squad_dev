@@ -25,27 +25,32 @@ class QuickRepairOrderForm(forms.ModelForm):
 
 
 class RepairOrderForm(forms.ModelForm):
-    
-    
+
     brand = forms.CharField(
         required=True,
-        
+            widget=forms.TextInput(
+            attrs={
+                "placeholder": " e.g DELL",
+            }
+        )
+
     )
 
     model = forms.CharField(
         required=True,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "",
+                "placeholder": "Device model",
             }
         )
     )
 
     serial_no_or_IMEI = forms.CharField(
         required=True,
+        label="Serial No/IMEI",
         widget=forms.TextInput(
             attrs={
-                "placeholder": "",
+                "placeholder": "Device serial No/EMEI",
             }
         )
     )
@@ -54,42 +59,42 @@ class RepairOrderForm(forms.ModelForm):
         required=True,
         widget=forms.Textarea(
             attrs={
-                "placeholder": "",
+                "placeholder": " A detailed description of the fault",
             }
         )
     )
 
-    pick_up_address = forms.DateField(
+    pick_up_date = forms.DateField(
         required=True,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "",
-            }
-        )
-    )
+        # widget=forms.SelectDateWidget(
 
-    pick_up_date = forms.CharField(
-        required=True,
-        widget=forms.SelectDateWidget()
+        #     attrs={
+        #         # "class": "datepicker",
+        #     }
+        # )
     )
 
     coupon_code = forms.CharField(
         required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Got a coupon/voucher use it here and get a discount on your repair order",
+            }
+        )
     )
 
     survey = forms.CharField(
         required=False,
-        help_text='How did you hear about us',
         widget=forms.Textarea(
             attrs={
-                "placeholder": "",
+                "placeholder": "How did you hear about us",
             }
         )
     )
 
     terms_and_condition = forms.BooleanField(
         required=True,
-        help_text='lorem epsum'
+        label=' I have read and agree to the'
     )
 
     class Meta:
@@ -100,7 +105,6 @@ class RepairOrderForm(forms.ModelForm):
             'model',
             'serial_no_or_IMEI',
             'fault_details',
-            'pick_up_address',
             'pick_up_date',
             'coupon_code',
             'survey',

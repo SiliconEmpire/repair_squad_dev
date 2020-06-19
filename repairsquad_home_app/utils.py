@@ -9,7 +9,7 @@ def unique_repair_order_id_generator(instance):
 
     Klass= instance.__class__
 
-    qs_exists= Klass.objects.filter(repair_order_id = repair_order_new_id).exists()
+    qs_exists= Klass.objects.filter(order_id = repair_order_new_id).exists()
     if qs_exists:
         return unique_repair_order_id_generator(instance)
     return repair_order_new_id

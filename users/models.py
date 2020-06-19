@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     phone_number = models.CharField(max_length=20)
-    address = models.CharField(max_length=300)
+    pick_up_address = models.TextField()
     state = models.CharField(max_length=300)
     city = models.CharField(max_length=300)
 

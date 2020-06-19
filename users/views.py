@@ -5,6 +5,16 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.core.paginator import Paginator
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
+from django.views.generic import (
+    ListView,
+)
+from repairsquad_home_app.models import (
+    RepairOrderModel,
+)
 
 # Create your views here.
 
@@ -47,10 +57,27 @@ def registerView(request):
 @login_required
 def profile(request):
     page_tittle = f'Hello {request.user.username}'
+    repairOrder_qs = RepairOrderModel.objects.all().filter(
+        owner=request.user).order_by('-order_date')
+    page_obj = Paginator(repairOrder_qs, 2)
     context = {
         'page_tittle': page_tittle,
+        'repairOrder_qs': repairOrder_qs,
+        'page_obj':page_obj.page(1)
     }
     return render(request, 'users/profile.html', context)
+
+class ProfileView(LoginRequiredMixin, ListView):
+    model = RepairOrderModel
+    template_name = 'users/profile.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'repairOrder_qs'
+    paginate_by = 4
+
+    def get_queryset(self):
+        print("*************************************")
+        print(self.request)
+        user = get_object_or_404(User, username=self.request.user)
+        return RepairOrderModel.objects.filter(owner=user).order_by('-order_date')
 
 @login_required
 def profile_update_view(request):
