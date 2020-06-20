@@ -7,8 +7,8 @@
     </div>
     <small class="">Note that your details serves as your identity in our database and
         it's important that they are valid, if they are not, click on the respective icons bellow to <br> Open <i
-            class="material-icons teal-text text-darken-2">open_with</i> or Edit <i
-            class="material-icons teal-text text-darken-2">edit</i> them.
+            class="material-icons teal-text text-lighten-2">open_with</i> or Edit <i
+            class="material-icons teal-text text-lighten-2">edit</i> them.
     </small>
     <br />
     <!-- <a class="waves-effect waves-light btn-small purple darken-2" href="">Update</a> -->
@@ -25,7 +25,7 @@
                     <li class="collection-header teal lighten-5">
                         <h5>ACCOUNT DETAILS
                             <a href="{% url 'profile_update' %}" class="secondary-content">
-                                <i class="material-icons teal-text text-darken-2">edit</i>
+                                <i class="material-icons teal-text text-lighten-2">edit</i>
                             </a>
                         </h5>
                     </li>
@@ -80,11 +80,26 @@
                     {% for order in repairOrder_qs %}
 
                     <li class="collection-item">
-                        <div> <span class="teal-text text-darken-2">Device Type:</span> {{order.device_type}} <br /> <span class="teal-text text-darken-2">Placed On:</span> {{order.order_date}}<br /> <span class="teal-text text-darken-2">Order ID:</span> {{order.order_id}}
-                            <br /><span class="teal-text text-darken-2">Order Status:</span> {{order.order_tracking}}<a href="#{{order.id}}_view" class="secondary-content modal-trigger "><i
-                                    class="material-icons ">open_with</i></a></div>
+                        <div> 
+                            <span class="teal-text text-darken-2">Device Type:</span> {{order.device_type}} <br /> 
+                            <span class="teal-text text-darken-2">Placed On:</span> {{order.order_date}}<br /> 
+                            <span class="teal-text text-darken-2">Order ID:</span> {{order.order_id}}<br />
+                            <span class="teal-text text-darken-2">Order Status:</span> {{order.order_tracking}}
+                           
+                            <a href="#{{order.id}}_view" class="secondary-content modal-trigger ">
+                                <!-- <i class="material-icons teal-text text-lighten-2">edit</i> -->
+                                <i class="material-icons ">open_with</i>
+                            </a>
+                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                            <a href="{% url 'repair_order_update' order.id %}" class="secondary-content modal-trigger ">
+                                <i class="material-icons teal-text text-lighten-2">edit</i>
+                                <!-- <i class="material-icons ">open_with</i> -->
+                            </a>
+                        </div>
                     </li>
-
+                    <!-- <a href="{% url 'profile_update' %}" class="secondary-content">
+                        <i class="material-icons teal-text text-darken-2">edit</i>
+                    </a> -->
                     <!-- droneDel Modal Structure -->
                     {% include 'users/includes/orderDetailModalStructure.html' %}
 
@@ -106,7 +121,7 @@
             {% for num in page_obj.paginator.page_range %}
               {% if page_obj.number == num %}
                 <!-- <a class="" href="?page={{ num }}">{{ num }}</a> -->
-                <li class="active teal darken-2"><a href="?page={{ num }}">{{ num }}</a></li>
+                <li class="active teal lighten-2"><a href="?page={{ num }}">{{ num }}</a></li>
               {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                 <!-- <a class="" href="?page={{ num }}">{{ num }}</a> -->
                 <li class="waves-effect"><a href="?page={{ num }}">{{ num }}</a></li>

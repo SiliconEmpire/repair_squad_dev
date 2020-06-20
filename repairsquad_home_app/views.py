@@ -85,10 +85,11 @@ def quickRepairOrderView(request):
     }
     return render(request, 'repairsquad_home_app/quick_repair_order_form.html', context)
 
+
 @login_required
 def RepairOrderView(request):
     page_tittle = "Repair Order"
-    
+
     if request.method == 'POST':
         p_u_form = ProfileUpdateForm(
             request.POST, instance=request.user.profile)
@@ -104,7 +105,7 @@ def RepairOrderView(request):
             )
             odr_id = RepairOrderModel.objects.all().filter(
                 owner=request.user).order_by('-order_date')[0].order_id
-            
+
             content = f"Thanks for Placing a repair order. Your Order ID is {odr_id} . Our customer care will be contacting you soon, to confirm and process your request"
             html_msg = render_to_string('repairsquad_home_app/email_templates/email.html', context={
                 'username': request.user.username,
@@ -133,7 +134,7 @@ def RepairOrderView(request):
                 html_message=admin_html_msg,
             )
             return redirect('profile')
-        
+
     else:
         repair_order_form = RepairOrderForm()
         p_u_form = ProfileUpdateForm(instance=request.user.profile)
@@ -144,3 +145,34 @@ def RepairOrderView(request):
         'p_u_form': p_u_form
     }
     return render(request, 'repairsquad_home_app/repair_order_form.html', context)
+
+
+@login_required
+def RepairOrderUpdateView(request, pk):
+    page_tittle = "Update Your Repair Order"
+    order_instance = get_object_or_404(RepairOrderModel, id=pk)
+    username = request.user
+    if order_instance.owner == request.user:
+        if request.method == 'POST':
+            repairOrder_update_form = RepairOrderForm(
+                request.POST, instance=order_instance)
+            if repairOrder_update_form.is_valid():
+                repairOrder_update_form.save()
+                messages.success(
+                    request, f'{username}, Your Order Have Been Successfully Updated!')
+                return redirect('profile')
+
+        else:
+            repairOrder_update_form = RepairOrderForm(instance=order_instance)
+        context = {
+            'page_tittle': page_tittle,
+            'repairOrder_update_form': repairOrder_update_form
+        }
+        return render(request, 'repairsquad_home_app/repairOrderUpdate.html', context)
+    else:
+        print("NO")
+        messages.warning(
+            request, f'{username}, You Do Not Have Access To This!!!')
+        return redirect('profile')
+    
+    

@@ -2,6 +2,7 @@ from django import forms
 from .models import QuickRepairOrderModel, RepairOrderModel
 
 
+
 class QuickRepairOrderForm(forms.ModelForm):
     name = forms.CharField(
         required=True,
