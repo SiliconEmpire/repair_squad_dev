@@ -1,22 +1,153 @@
 {% load static %}
 
 <!-- beginning of navbar -->
-<div class="navbar-fixed">
+<div class="navbar-fixed ">
+    <nav class=" teal accent-4">
+        <div class=" container ">
+            <div class="nav-wrapper ">
 
-    <nav class="teal lighten-2">
-        <div class="container">
-        <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Repair_Squad</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-            </ul>
+                <a href="{% url 'home' %}" class="brand-logo">
+                    <div class="title-underline">
+                    </div>
+                    <div class="title-underline">
+                    </div>
+                    <img src="#" alt="REPAIR_SQUAD" style="width: 170px;">
+                </a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+
+                {% with url_name=request.resolver_match.url_name %}
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="{%if url_name == 'home'%} active {% endif %}">
+                        <a href="{% url 'home' %}" class="waves-effect waves-light">Home</a>
+                    </li>
+                    <li class="{%if url_name == 'repair_order'%} active {% endif %}">
+                        <a href="{% url 'repair_order' %}" class="waves-effect waves-light">Place An Order</a>
+                    </li>
+                    <li class="{%if url_name == ''%} active {% endif %}">
+                        {% if url_name == 'home' %}
+                        <a href="#track_order" class="waves-effect waves-light">Track</a>
+                        {% else %}
+                        <a href="{% url 'home' %}#track_order" class="waves-effect waves-light">Track</a>
+                        {% endif %}
+                    </li>
+                    <li class="{%if url_name == ''%} active {% endif %}">
+                        <a href="" class="waves-effect waves-light">Terms And Condition</a>
+                    </li>
+                    <li class="{%if url_name == ''%} active {% endif %}">
+                        {% if url_name == 'home' %}
+                        <a href="#contact_us" class="waves-effect waves-light">Contact Us</a>
+                        {% else %}
+                        <a href="{% url 'home' %}#contact_us" class="waves-effect waves-light">Contact Us</a>
+                        {% endif %}
+                    </li>
+                    <li class="{%if url_name == ''%} active {% endif %}">
+                        {% if url_name == 'home' %}
+                        <a href="#faq" class="waves-effect waves-light">FAQ</a>
+                        {% else %}
+                        <a href="{% url 'home' %}#faq" class="waves-effect waves-light">FAQ</a>
+                        {% endif %}
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="{%if url_name == 'profile'%} active {% endif %}">
+                        <a href="{% url 'profile' %}" class="waves-effect waves-light">Profile</a>
+                    </li>
+                    <li class="{%if url_name == 'logout'%} active {% endif %}">
+                        <a href="{% url 'logout' %}" class="waves-effect waves-light">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="{%if url_name == 'login'%} active {% endif %}">
+                        <a href="{% url 'login' %}" class="waves-effect waves-light">Login</a>
+                    </li>
+                    <li class="{%if url_name == 'register'%} active {% endif %}">
+                        <a href="{% url 'register' %}" class="waves-effect waves-light">Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endwith %}
+
+            </div>
         </div>
+    </nav>
 </div>
-</nav>
+<!-- end of navbar -->
+
+<!-- beginning of sidenav -->
+<ul id="mobile-nav" class="sidenav">
+    <li>
+        <div class="center-align ">
+            <div class="section"></div>
+            <div class="">
+                <a href="{% url 'home' %}" class="brand-logo ">
+                    <img src="" alt="SKY_SQUAD" style="width: 200px;">
+                </a>
+            </div>
+        </div>
+    </li>
 
 
-</div>
+
+    <li>
+        <div class="  teal accent-4 title-underline"></div>
+    </li>
+    <!-- <li><a href="{% url 'home' %}" class="waves-effect waves-light">Home</a></li>
+  <li class="active"><a href="#Components" class="waves-effect waves-light">About</a></li>
+  <li><a href="#collapsible" class="waves-effect waves-light">My Dashboard</a></li>
+  <li><a href="#collapsible" class="waves-effect waves-light">Logout</a></li>
+  <li><a href="#collapsible" class="waves-effect waves-light">Login</a></li>
+  <li><a href="#collapsible" class="waves-effect waves-light">Register</a></li> -->
+
+
+
+    {% with url_name=request.resolver_match.url_name %}
+    <li class="{%if url_name == 'home'%} active {% endif %}">
+        <a href="{% url 'home' %}" class="waves-effect waves-light">Home</a>
+    </li>
+    <li class="{%if url_name == ''%} active {% endif %}">
+        <a href="" class="waves-effect waves-light">Place An Order</a>
+    </li>
+    <li class="{%if url_name == ''%} active {% endif %}">
+        {% if url_name == 'home' %}
+        <a href="#track_order" class="waves-effect waves-light">Track</a>
+        {% else %}
+        <a href="{% url 'home' %}#track_order" class="waves-effect waves-light">Track</a>
+        {% endif %}
+    </li>
+    
+    <li class="{%if url_name == ''%} active {% endif %}">
+        <a href="" class="waves-effect waves-light">Terms And Condition</a>
+    </li>
+    <li class="{%if url_name == ''%} active {% endif %}">
+        {% if url_name == 'home' %}
+        <a href="#contact_us" class="waves-effect waves-light">Contact Us</a>
+        {% else %}
+        <a href="{% url 'home' %}#contact_us" class="waves-effect waves-light">Contact Us</a>
+        {% endif %}
+    </li>
+    <li class="{%if url_name == ''%} active {% endif %}">
+        {% if url_name == 'home' %}
+        <a href="#faq" class="waves-effect waves-light">FAQ</a>
+        {% else %}
+        <a href="{% url 'home' %}#faq" class="waves-effect waves-light">FAQ</a>
+        {% endif %}
+    </li>
+    {% if user.is_authenticated %}
+    <li class="{%if url_name == 'profile'%} active {% endif %}">
+        <a href="{% url 'profile' %}" class="waves-effect waves-light">Profile</a>
+    </li>
+    <li class="{%if url_name == 'logout'%} active {% endif %}">
+        <a href="{% url 'logout' %}" class="waves-effect waves-light">Logout</a>
+    </li>
+    {% else %}
+    <li class="{%if url_name == 'login'%} active {% endif %}">
+        <a href="{% url 'login' %}" class="waves-effect waves-light">Login</a>
+    </li>
+    <li class="{%if url_name == 'register'%} active {% endif %}">
+        <a href="{% url 'register' %}" class="waves-effect waves-light">Register</a>
+    </li>
+    {% endif %} {% endwith %}
+</ul>
 
 <script>
     const sideNav = document.querySelector('.sidenav');

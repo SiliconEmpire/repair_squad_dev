@@ -1,6 +1,7 @@
 from django import forms
-from .models import QuickRepairOrderModel, RepairOrderModel
-
+from django.utils import timezone
+import datetime
+from .models import QuickRepairOrderModel, RepairOrderModel, ContactAndFeedbackModel
 
 
 class QuickRepairOrderForm(forms.ModelForm):
@@ -29,7 +30,7 @@ class RepairOrderForm(forms.ModelForm):
 
     brand = forms.CharField(
         required=True,
-            widget=forms.TextInput(
+        widget=forms.TextInput(
             attrs={
                 "placeholder": " e.g DELL",
             }
@@ -65,15 +66,16 @@ class RepairOrderForm(forms.ModelForm):
         )
     )
 
-    pick_up_date = forms.DateField(
-        required=True,
-        # widget=forms.SelectDateWidget(
+    # pick_up_date = forms.DateField(
+    #     required=True,
+    #     # initial = datetime.date.today,
+    #     # widget=forms.DateTimeInput(
 
-        #     attrs={
-        #         # "class": "datepicker",
-        #     }
-        # )
-    )
+    #     #     attrs={
+    #     #         # "class": "datepicker",
+    #     #     }
+    #     # )
+    # )
 
     coupon_code = forms.CharField(
         required=False,
@@ -111,3 +113,46 @@ class RepairOrderForm(forms.ModelForm):
             'survey',
             'terms_and_condition'
         ]
+
+
+class ContactAndFeedbackForm(forms.ModelForm):
+    name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "e.g John",
+            }
+        )
+    )
+    email = forms.EmailField(
+        required=True,
+       
+    )
+    phone_number = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "+2348132450841 or 08132450841",
+            }
+        )
+    )
+    message = forms.CharField(
+        required=True,
+        widget=forms.Textarea(
+            attrs={
+               
+            }
+        )
+        
+    )
+    class Meta:
+        model = ContactAndFeedbackModel
+        fields = [
+            'name',
+            'email',
+            'phone_number',
+            'message',
+        ]
+
+class TrackOrderForm(forms.Form):
+    order_ID = forms.CharField(label='ORDER ID', max_length=10)

@@ -1,0 +1,38 @@
+{% load static %}
+{% load materializecss %}
+<section id="track_order" class="section scrollspy">
+<div class="card-panel grey lighten-4">
+    <div class="section">
+    </div>
+    <div class="center">
+        <h4>TRACK ORDER &nbsp <i class="small  material-icons">search</i></h4>
+    </div>
+    <div class="row">
+        <div class="col s4 offset-s4 ">
+            <div class="divider teal accent-4"></div>
+            <div class="divider"></div>
+            <div class="divider teal accent-4"></div> 
+        </div>
+        <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3"> 
+            <form action="{% url 'track_order' %}" method="POST"> 
+                {% csrf_token %}
+                
+                <div class="section">
+                </div>
+                {{ track_order_form|materializecss }}
+    
+                <div class="">
+                    <button name="{{track_order_form.prefix}}" class="btn teal accent-4 waves-effect waves-light" type="submit"><i class="material-icons right">search</i>TRACK</button>
+                    <small class="">
+                        
+                    </small>
+                </div>
+    
+                <div class="section">
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+<section/>

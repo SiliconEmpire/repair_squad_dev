@@ -1,0 +1,87 @@
+{% load static %}
+<footer class="page-footer teal accent-4">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m3">
+                <h3>Just Relax We Will Get It Fixed</h3>
+            </div>
+            <div class="col s12 m3 offset-m1 right">
+            <ul class="">
+                {% with url_name=request.resolver_match.url_name %}
+                <li class="{%if url_name == 'home'%} active {% endif %}">
+                    <a href="{% url 'home' %}" class="white-text waves-effect waves-light">Home</a>
+                </li>
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == 'repair_order'%} active {% endif %}">
+                    <a href="{% url 'repair_order' %}" class=" white-text waves-effect waves-light">Place An Order</a>
+                </li>
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == ''%} active {% endif %}">
+                    <a href="" class="white-text waves-effect waves-light">Track</a>
+                </li>
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == ''%} active {% endif %}">
+                    <a href="" class="white-text waves-effect waves-light">Terms And Condition</a>
+                </li>
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == ''%} active {% endif %}">
+                    <a href="" class="white-text waves-effect waves-light">Contact Us</a>
+                </li>
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == ''%} active {% endif %}">
+                    <a href="" class="white-text waves-effect waves-light">FAQ</a>
+                </li>
+                
+                {% if user.is_authenticated %}
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == 'profile'%} active {% endif %}">
+                    <a href="{% url 'profile' %}" class="white-text waves-effect waves-light">Profile</a>
+                </li>
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == 'logout'%} active {% endif %}">
+                    <a href="{% url 'logout' %}" class=" white-text waves-effect waves-light">Logout</a>
+                </li>
+                {% else %}
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == 'login'%} active {% endif %}">
+                    <a href="{% url 'login' %}" class="white-text waves-effect waves-light">Login</a>
+                </li>
+                <div class="title-underline "></div>
+                <div class="title-underline "></div>
+                <li class="{%if url_name == 'register'%} active {% endif %}">
+                    <a href="{% url 'register' %}" class="white-text waves-effect waves-light">Register</a>
+                </li>
+                {% endif %} {% endwith %}
+                </ul>
+            </div>
+            <div class="col s12 m3 offset-m1 right">
+                <h5>Contacts</h5>
+                <h6>08132450841</h6>
+                <h6>08157929152</h6>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © COPYRIGHT repairsquad.com.ng 2019. ALL RIGHTS RESERVED. 
+            <div class="right">
+                <a class="grey-text text-lighten-4 " href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
+                &nbsp &nbsp 
+                <a class="grey-text text-lighten-4 " href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></i></a>
+                &nbsp &nbsp
+                <a class="grey-text text-lighten-4 " href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
+                &nbsp &nbsp
+                <a class="grey-text text-lighten-4 " href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube-square fa-2x"></i></a>
+            </div>
+            
+        </div>
+    </div>
+</footer>

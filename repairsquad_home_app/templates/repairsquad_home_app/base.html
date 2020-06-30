@@ -6,14 +6,14 @@
 <head>
 
     <title>{{page_tittle}}-Repair Squad</title>
-    <link rel="shortcut icon" href="{% static 'sky_squad_home_app/img/sky_squad_logos/skySquadFavicon.png' %}" />
+    <link rel="shortcut icon" href="{% static 'repairsquad_home_app/img/sky_squad_logos/skySquadFavicon.png' %}" />
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- main css -->
-    <link rel="stylesheet" type="text/css" href="{%static 'sky_squad_home_app/css/main.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'repairsquad_home_app/css/main.css'%}">
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/019a20aa61.js" crossorigin="anonymous"></script>
@@ -93,11 +93,18 @@
         <!-- Starting of repair_order_update_content -->
         {% block repair_order_update_content %} {% endblock repair_order_update_content %}
         <!-- End of repair_order_update_content -->
+        
+        <!-- Starting of track_status_content -->
+        {% block track_status_content %} {% endblock track_status_content %}
+        <!-- End of track_status_content -->
+        
 
     </main>
 
 
-
+<!-- Starting of footer -->
+{% include 'repairsquad_home_app/includes/footer.html' %}
+<!-- End of footer -->
 
 </body>
 

@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import (
     QuickRepairOrderModel,
     RepairOrderModel,
+    ContactAndFeedbackModel
 )
 
 class Repair_Squad_Home_App_QuickRepairOrderModel_Admin(admin.ModelAdmin):
@@ -19,3 +20,7 @@ class Repair_Squad_Home_App_RepairOrderModel_Admin(admin.ModelAdmin):
     list_per_page = 50
 
 admin.site.register(RepairOrderModel, Repair_Squad_Home_App_RepairOrderModel_Admin)
+
+
+
+admin.site.register(ContactAndFeedbackModel)

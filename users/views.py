@@ -54,18 +54,18 @@ def registerView(request):
     return render(request, 'users/register.html', {'reg_form': reg_form, 'page_tittle': page_tittle, })
 
 
-@login_required
-def profile(request):
-    page_tittle = f'Hello {request.user.username}'
-    repairOrder_qs = RepairOrderModel.objects.all().filter(
-        owner=request.user).order_by('-order_date')
-    page_obj = Paginator(repairOrder_qs, 2)
-    context = {
-        'page_tittle': page_tittle,
-        'repairOrder_qs': repairOrder_qs,
-        'page_obj':page_obj.page(1)
-    }
-    return render(request, 'users/profile.html', context)
+# @login_required
+# def profile(request):
+#     page_tittle = f'Hello {request.user.username}'
+#     repairOrder_qs = RepairOrderModel.objects.all().filter(
+#         owner=request.user).order_by('-order_date')
+#     page_obj = Paginator(repairOrder_qs, 2)
+#     context = {
+#         'page_tittle': page_tittle,
+#         'repairOrder_qs': repairOrder_qs,
+#         'page_obj':page_obj.page(1)
+#     }
+#     return render(request, 'users/profile.html', context)
 
 class ProfileView(LoginRequiredMixin, ListView):
     model = RepairOrderModel
@@ -78,6 +78,11 @@ class ProfileView(LoginRequiredMixin, ListView):
         print(self.request)
         user = get_object_or_404(User, username=self.request.user)
         return RepairOrderModel.objects.filter(owner=user).order_by('-order_date')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_tittle'] = f'Hello {self.request.user.username}'
+        return context
 
 @login_required
 def profile_update_view(request):

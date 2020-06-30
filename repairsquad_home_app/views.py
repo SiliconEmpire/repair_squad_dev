@@ -6,20 +6,87 @@ from users.forms import ProfileUpdateForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from users.forms import UserUpdateForm, ProfileUpdateForm
-from .forms import (
+from .models import (
     QuickRepairOrderModel,
-    RepairOrderModel
+    RepairOrderModel,
+    ContactAndFeedbackModel
 )
 from .forms import (
     QuickRepairOrderForm,
-    RepairOrderForm
+    RepairOrderForm,
+    ContactAndFeedbackForm,
+    TrackOrderForm
 )
+
+
+def contactAndFeedbackView(request):
+    if request.method == 'POST':
+        contact_and_feedback_form = ContactAndFeedbackForm(request.POST)
+        if contact_and_feedback_form.is_bound and contact_and_feedback_form.is_valid():
+            contact_and_feedback_form.save()
+            name = contact_and_feedback_form.cleaned_data.get('name')
+            messages.success(
+                request, f'{name}, Thanks For Contacting Us Our Customer Care Will Get Back To You Soon')
+            content = "THERE IS A FEEDBACK FROM A REPAIR SQUAD USER, PLEASE CHECK THE BACK END TO REVIEW"
+            html_msg = render_to_string('repairsquad_home_app/email_templates/email.html', context={
+                'username': request.user.username,
+                'content': content,
+            })
+            send_mail(
+                "REPAIR SQUAD NOTIFICATION",
+                "THERE IS A FEEDBACK FROM A REPAIR SQUAD USER, PLEASE CHECK THE BACK END TO REVIEW",
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_HOST_USER, ],
+                fail_silently=True,
+                html_message=html_msg,
+            )
+            return redirect('home',)
+
+
+def trackOrderView(request):
+    page_tittle = 'Order Status'
+    if request.method == 'POST':
+        track_order_form = TrackOrderForm(request.POST)
+        if track_order_form.is_bound and track_order_form.is_valid():
+            orderID = track_order_form.cleaned_data.get('order_ID', None)
+            order_exists = RepairOrderModel.objects.filter(
+                order_id=orderID).exists()
+            if order_exists:
+                order_instance_qs = RepairOrderModel.objects.get(
+                    order_id=orderID)
+
+                context = {
+                    'page_tittle': page_tittle,
+                    'order_instance_qs': order_instance_qs,
+                }
+                return render(request, 'repairsquad_home_app/track_status.html', context)
+            else:
+                messages.error(
+                    request, f' oOps! Invalid Order ID')
+                return redirect('home',)
+        else:
+            print("invalid")
+            messages.error(
+                request, f'INVALID!!!')
+            return redirect('home',)
+    else:
+        print("invalid")
+        messages.error(
+            request, f'INVALID REQUEST!!!')
+        return redirect('home',)
 
 
 def home_page_view(request):
     page_tittle = 'Welcome To Repair Squad'
+    if request.method == 'POST':
+        pass
+    else:
+        contact_and_feedback_form = ContactAndFeedbackForm()
+        track_order_form = TrackOrderForm()
     context = {
-        'page_tittle': page_tittle
+        'page_tittle': page_tittle,
+        'contact_and_feedback_form': contact_and_feedback_form,
+        'track_order_form': track_order_form
     }
     return render(request, 'repairsquad_home_app/homepage.html', context)
 
@@ -57,15 +124,15 @@ def quickRepairOrderView(request):
                         f' Hi, {name} This quick repair order service is meant for first time visitors'
                         ' only, our system detects that you\'ve'
                         ' used this service before, you may not get a call'
-                        ' back, we recommend that you place your repair order here'
+                        ' back, we recommend that you sign up, login place your repair order'
                         ' thanks. the Repair Squad Team'
                     )
                     messages.warning(request, f' Hi, {name} This quick repair order service is meant for first time visitors'
                                      ' only, our system detects that you\'ve'
                                      ' used this service before, you may not get a call'
-                                     ' back, we recommend that you place your repair order here '
+                                     ' back, we recommend that you sign up/login and place your repair order '
                                      ' thanks. the Repair Squad Team')
-                    return redirect('quick_repair_order')
+                    return redirect('repair_order')
 
             else:
                 quick_repair_order_form.save()
@@ -73,9 +140,9 @@ def quickRepairOrderView(request):
                     f'Hi, {name} thanks for choosing to use Repair Squad, we will call you as soon as possible ')
                 messages.success(
                     request, f'Hi, {name} thanks for choosing to use Repair Squad, our customer care will contact you soon ')
-                return redirect('quick_repair_order')
+                return redirect('home')
 
-        return redirect('quick_repair_order')
+        
     else:
         quick_repair_order_form = QuickRepairOrderForm()
 
@@ -89,16 +156,17 @@ def quickRepairOrderView(request):
 @login_required
 def RepairOrderView(request):
     page_tittle = "Repair Order"
+    username = request.user
 
     if request.method == 'POST':
         p_u_form = ProfileUpdateForm(
             request.POST, instance=request.user.profile)
         repair_order_form = RepairOrderForm(request.POST)
         repair_order_form.instance.owner = request.user
-        if repair_order_form and p_u_form.is_valid():
+        if repair_order_form.is_valid() and p_u_form.is_valid():
             p_u_form.save()
             repair_order_form.save()
-            username = request.user
+            
             messages.success(
                 request,
                 f'{username}, Thanks for placing a repair order . Our customer care will be contacting you soon, to confirm and process your request'
@@ -134,6 +202,12 @@ def RepairOrderView(request):
                 html_message=admin_html_msg,
             )
             return redirect('profile')
+        # else:
+        #     messages.error(
+        #         request,
+        #         f'{username}, Please complete the form'
+        #     )
+        #     return redirect('repair_order')
 
     else:
         repair_order_form = RepairOrderForm()
@@ -174,5 +248,3 @@ def RepairOrderUpdateView(request, pk):
         messages.warning(
             request, f'{username}, You Do Not Have Access To This!!!')
         return redirect('profile')
-    
-    

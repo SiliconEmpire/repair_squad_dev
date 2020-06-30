@@ -1,7 +1,46 @@
 {% extends 'repairsquad_home_app/base.html' %}
 {% load static %}
 {% block home_content %}
-<h1>
-    WELCOME TO R_S
-</h1>
+<!-- Starting of carousel -->
+{% include 'repairsquad_home_app/includes/carousel.html' %}
+<!-- End of carousel -->
+
+<!-- Starting of welcome_to_repair_squad -->
+{% include 'repairsquad_home_app/includes/welcome_to_repair_squad.html' %}
+<!-- End of welcome_to_repair_squad -->
+
+<!-- Starting of request_for_a_call -->
+{% include 'repairsquad_home_app/includes/request_for_a_call.html' %}
+<!-- End of request_for_a_call -->
+
+<!-- Starting of what_we_do -->
+{% include 'repairsquad_home_app/includes/what_we_do.html' %}
+<!-- End of what_we_do -->
+
+<!-- Starting of what_we_repair -->
+{% include 'repairsquad_home_app/includes/what_we_repair.html' %}
+<!-- End of what_we_repair -->
+
+<!-- Starting of FAQ -->
+{% include 'repairsquad_home_app/includes/FAQ.html' %}
+<!-- End of FAQ -->
+
+<!-- Starting of contact_us -->
+{% include 'repairsquad_home_app/includes/contact_us.html' %}
+<!-- End of contact_us -->
+
+<!-- Starting of track_order -->
+{% include 'repairsquad_home_app/includes/track_order.html' %}
+<!-- End of track_order -->
+
+<script>
+
+  const scrollspy_obj = document.querySelectorAll('.scrollspy');
+  M.ScrollSpy.init(scrollspy_obj,);
+
+  const collapsible_obj = document.querySelector('.collapsible');
+  M.Collapsible.init(collapsible_obj, {
+
+  });
+</script>
 {% endblock home_content %}

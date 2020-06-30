@@ -4,26 +4,31 @@
 {% block quick_repair_order_content %}
 <div class="row">
     <div class=" col s10 offset-s1 m6 offset-m3">
-        <div class="card-panel teal lighten-5">
+        <div class="card-panel  grey lighten-4">
             <form method="POST">
                 {% csrf_token %}
                 <h5>
-                    <legend class="">LOREM</legend>
+                    <legend class="">WE DO THE CALLING</legend>
                 </h5>
                 <div class="divider">
                 </div>
                 <div class="section">
+                    <small class="green-text">
+                        Just give us your <u>Name</u>, and <u>Phone Number</u>,
+                        Our custormer care will contact you as soon as possible.
+                    </small>
                 </div>
+                <!-- <div class="section">
+                </div> -->
                 {{ quick_repair_order_form|materializecss }}
+                &nbsp &nbsp &nbsp &nbsp &nbsp 
+                    <a href="#">Terms and Conditions</a>
                 <div class="section">
                 </div>
-                <div class="section">
-                </div>
-                <div class="divider">
-                </div>
+                
                 <div class="">
                     
-                    <button class="btn teal darken-2 waves-effect waves-light" type="submit">Request For A Call</button>
+                    <button class="btn teal accent-4 waves-effect waves-light" type="submit">Request For A Call</button>
                 </div>
 
                 <div class="section">
