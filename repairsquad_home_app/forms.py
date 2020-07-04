@@ -115,43 +115,50 @@ class RepairOrderForm(forms.ModelForm):
         ]
 
 
-class ContactAndFeedbackForm(forms.ModelForm):
-    name = forms.CharField(
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "e.g John",
-            }
-        )
-    )
-    email = forms.EmailField(
-        required=True,
+# class ContactAndFeedbackForm(forms.ModelForm):
+#     name = forms.CharField(
+#         required=True,
+#         widget=forms.TextInput(
+#             attrs={
+#                 "placeholder": "e.g John",
+#             }
+#         )
+#     )
+#     email = forms.EmailField(
+#         required=True,
        
-    )
-    phone_number = forms.CharField(
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "+2348132450841 or 08132450841",
-            }
-        )
-    )
-    message = forms.CharField(
-        required=True,
-        widget=forms.Textarea(
-            attrs={
+#     )
+#     phone_number = forms.CharField(
+#         required=True,
+#         widget=forms.TextInput(
+#             attrs={
+#                 "placeholder": "+2348132450841 or 08132450841",
+#             }
+#         )
+#     )
+#     message = forms.CharField(
+#         required=True,
+#         widget=forms.Textarea(
+#             attrs={
                
-            }
-        )
+#             }
+#         )
         
-    )
+#     )
+#     class Meta:
+#         model = ContactAndFeedbackModel
+#         fields = [
+#             'name',
+#             'email',
+#             'phone_number',
+#             'message',
+#         ]
+
+class ContactAndFeedbackForm(forms.ModelForm):
     class Meta:
         model = ContactAndFeedbackModel
         fields = [
-            'name',
-            'email',
-            'phone_number',
-            'message',
+            'name','email','phone_number','message',
         ]
 
 class TrackOrderForm(forms.Form):

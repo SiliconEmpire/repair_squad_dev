@@ -80,31 +80,42 @@
 
         <!-- Starting of profile_update_content -->
         {% block profile_update_content %} {% endblock profile_update_content %}
-        <!-- End of profile_update_content --> 
+        <!-- End of profile_update_content -->
 
         <!-- Starting of quick_repair_order_content -->
         {% block quick_repair_order_content %} {% endblock quick_repair_order_content %}
-        <!-- End of quick_repair_order_content --> 
+        <!-- End of quick_repair_order_content -->
 
         <!-- Starting of repair_order_content -->
         {% block repair_order_content %} {% endblock repair_order_content %}
         <!-- End of repair_order_content -->
-        
+
         <!-- Starting of repair_order_update_content -->
         {% block repair_order_update_content %} {% endblock repair_order_update_content %}
         <!-- End of repair_order_update_content -->
-        
+
         <!-- Starting of track_status_content -->
         {% block track_status_content %} {% endblock track_status_content %}
         <!-- End of track_status_content -->
-        
+
+
+
+        <!-- Starting of floating_action_btn -->
+        {% include 'repairsquad_home_app/includes/floating_action_btn.html' %}
+        <!-- End of floating_action_btn -->
+
+        <script>
+            const scrollspy_obj = document.querySelectorAll('.scrollspy');
+            M.ScrollSpy.init(scrollspy_obj,);
+        </script>
+
 
     </main>
 
 
-<!-- Starting of footer -->
-{% include 'repairsquad_home_app/includes/footer.html' %}
-<!-- End of footer -->
+    <!-- Starting of footer -->
+    {% include 'repairsquad_home_app/includes/footer.html' %}
+    <!-- End of footer -->
 
 </body>
 

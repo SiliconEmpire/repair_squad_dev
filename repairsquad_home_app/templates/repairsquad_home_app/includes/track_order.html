@@ -5,13 +5,13 @@
     <div class="section">
     </div>
     <div class="center">
-        <h4>TRACK ORDER &nbsp <i class="small  material-icons">search</i></h4>
+        <h4>TRACK ORDER &nbsp <i class="small  material-icons purple-text text-darken-2">search</i></h4>
     </div>
     <div class="row">
-        <div class="col s4 offset-s4 ">
-            <div class="divider teal accent-4"></div>
+        <div class="col s10 offset-s1 m4 offset-m4 ">
+            <div class="divider purple darken-2"></div>
             <div class="divider"></div>
-            <div class="divider teal accent-4"></div> 
+            <div class="divider purple darken-2"></div> 
         </div>
         <div class="col s10 offset-s1 m8 offset-m2 l6 offset-l3"> 
             <form action="{% url 'track_order' %}" method="POST"> 
@@ -22,7 +22,7 @@
                 {{ track_order_form|materializecss }}
     
                 <div class="">
-                    <button name="{{track_order_form.prefix}}" class="btn teal accent-4 waves-effect waves-light" type="submit"><i class="material-icons right">search</i>TRACK</button>
+                    <button name="{{track_order_form.prefix}}" class="btn purple darken-2 waves-effect waves-light" type="submit"><i class="material-icons right">search</i>TRACK</button>
                     <small class="">
                         
                     </small>

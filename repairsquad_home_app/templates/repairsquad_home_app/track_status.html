@@ -9,21 +9,21 @@
                 <div class="col s8 offset-s2">
                     <h5>Yeah! We Found Your Order <span class="green-text">({{order_instance_qs.order_id}})</span></h5>
                     <div class=" ">
-                        <div class="divider teal accent-4"></div>
+                        <div class="divider purple darken-2"></div>
                         <div class="divider"></div>
-                        <div class="divider teal accent-4"></div>
+                        <div class="divider purple darken-2"></div>
                     </div>
 
 
-                    <h6> <span class="teal-text text-accent-4">Name:</span> {{order_instance_qs.owner}}</h6>
-                    <h6> <span class="teal-text text-accent-4">IMEI:</span> {{order_instance_qs.serial_no_or_IMEI}}</h6>
-                    <h6> <span class="teal-text text-accent-4">Order Status:</span> {{order_instance_qs.order_tracking}}
+                    <h6> <span class="purple-text text-darken-2">Name:</span> {{order_instance_qs.owner}}</h6>
+                    <h6> <span class="purple-text text-darken-2">IMEI:</span> {{order_instance_qs.serial_no_or_IMEI}}</h6>
+                    <h6> <span class="purple-text text-darken-2">Order Status:</span> {{order_instance_qs.order_tracking}}
                     </h6>
-                    <h6> <span class="teal-text text-accent-4">Placed On:</span> {{order_instance_qs.order_date}}</h6>
-                    <h6> <span class="teal-text text-accent-4">Device Type:</span> {{order_instance_qs.device_type}}
+                    <h6> <span class="purple-text text-darken-2">Placed On:</span> {{order_instance_qs.order_date}}</h6>
+                    <h6> <span class="purple-text text-darken-2">Device Type:</span> {{order_instance_qs.device_type}}
                     </h6>
                     <div class="section"></div>
-                    <a href="{% url 'home' %}" class="btn waves-effect waves-light"><i class="material-icons left">home</i>Home</a>
+                    <a href="{% url 'home' %}" class="btn waves-effect waves-light purple darken-2"><i class="material-icons left">home</i>Home</a>
                 </div>
             </div>
         </div>

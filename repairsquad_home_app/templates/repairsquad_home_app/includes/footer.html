@@ -1,5 +1,5 @@
 {% load static %}
-<footer class="page-footer teal accent-4">
+<footer class="page-footer purple darken-2">
     <div class="container">
         <div class="row">
             <div class="col s12 m3">
@@ -19,7 +19,11 @@
                 <div class="title-underline "></div>
                 <div class="title-underline "></div>
                 <li class="{%if url_name == ''%} active {% endif %}">
-                    <a href="" class="white-text waves-effect waves-light">Track</a>
+                    {% if url_name == 'home' %}
+                    <a href="#track_order" class="white-text waves-effect waves-light">Track</a>
+                    {% else %}
+                    <a href="{% url 'home' %}#track_order" class="white-text waves-effect waves-light">Track</a>
+                    {% endif %}
                 </li>
                 <div class="title-underline "></div>
                 <div class="title-underline "></div>
@@ -29,12 +33,20 @@
                 <div class="title-underline "></div>
                 <div class="title-underline "></div>
                 <li class="{%if url_name == ''%} active {% endif %}">
-                    <a href="" class="white-text waves-effect waves-light">Contact Us</a>
+                    {% if url_name == 'home' %}
+                    <a href="#contact_us" class="white-text waves-effect waves-light">Contact Us</a>
+                    {% else %}
+                    <a href="{% url 'home' %}#contact_us" class="white-text waves-effect waves-light">Contact Us</a>
+                    {% endif %}
                 </li>
                 <div class="title-underline "></div>
                 <div class="title-underline "></div>
                 <li class="{%if url_name == ''%} active {% endif %}">
-                    <a href="" class="white-text waves-effect waves-light">FAQ</a>
+                    {% if url_name == 'home' %}
+                    <a href="#faq" class="white-text waves-effect waves-light">FAQ</a>
+                    {% else %}
+                    <a href="{% url 'home' %}#faq" class="white-text waves-effect waves-light">FAQ</a>
+                    {% endif %}
                 </li>
                 
                 {% if user.is_authenticated %}

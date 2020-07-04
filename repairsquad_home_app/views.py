@@ -21,8 +21,10 @@ from .forms import (
 
 def contactAndFeedbackView(request):
     if request.method == 'POST':
+        print("------------------------------------------------------------------------------------")
         contact_and_feedback_form = ContactAndFeedbackForm(request.POST)
-        if contact_and_feedback_form.is_bound and contact_and_feedback_form.is_valid():
+        if contact_and_feedback_form.is_valid():
+            print("------------------------------------------------------------------------------------")
             contact_and_feedback_form.save()
             name = contact_and_feedback_form.cleaned_data.get('name')
             messages.success(
@@ -41,6 +43,12 @@ def contactAndFeedbackView(request):
                 html_message=html_msg,
             )
             return redirect('home',)
+        else:
+            messages.error(
+                    request, f' oOps! Invalid, please complete the form before sumbitting')
+            return redirect('home',)
+    else:
+        return redirect( 'home',)
 
 
 def trackOrderView(request):

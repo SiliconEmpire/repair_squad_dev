@@ -1,0 +1,71 @@
+{% load static %}
+
+<!-- beginning of floating_action_btn -->
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large purple darken-2">
+        <i class="material-icons">open_with</i>
+    </a>
+    <ul>
+        <!-- <li><a href="" class="btn-floating red">
+            <i class="material-icons">home</i>
+            </a></li> -->
+        <li class="btn-floating red">
+            <a href="{% url 'home' %}" class="white-text waves-effect waves-light">
+                <i class="material-icons">home</i>
+            </a>
+        </li>
+        <!-- <li><a href="" class="btn-floating yellow darken-1">
+            <i class="material-icons">message</i>
+            </a></li> -->
+        <!-- <li><a href="" class="btn-floating green">
+            <i class="material-icons">search</i>
+            </a></li> -->
+
+        <li class="btn-floating yellow darken-1">
+            {% if url_name == 'home' %}
+            <a href="#track_order" class="white-text waves-effect waves-light">
+                <i class="material-icons">search</i>
+            </a>
+            {% else %}
+            <a href="{% url 'home' %}#track_order" class="white-text waves-effect waves-light">
+                <i class="material-icons">search</i>
+            </a>
+            {% endif %}
+        </li>
+
+        <li class="btn-floating green">
+            {% if url_name == 'home' %}
+            <a href="#contact_us" class="white-text waves-effect waves-light">
+                <i class="material-icons">message</i>
+            </a>
+            {% else %}
+            <a href="{% url 'home' %}#contact_us" class="white-text waves-effect waves-light">
+                <i class="material-icons">message</i>
+            </a>
+            {% endif %}
+        </li>
+        <!-- <li><a href="{% url 'home' %}" class="btn-floating blue">
+            <i class="material-icons">question_answer</i>
+            </a></li> -->
+        <li class="btn-floating blue">
+            {% if url_name == 'home' %}
+            <a href="#faq" class="white-text waves-effect waves-light">
+                <i class="material-icons">question_answer</i>
+            </a>
+            {% else %}
+            <a href="{% url 'home' %}#faq" class="white-text waves-effect waves-light">
+                <i class="material-icons">question_answer</i>
+            </a>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+
+<script>
+    const fixed_action_btn_obj = document.querySelector('.fixed-action-btn');
+    M.FloatingActionButton.init(fixed_action_btn_obj, {
+
+    });
+</script>
+
+<!-- end of floating_action_btn -->
