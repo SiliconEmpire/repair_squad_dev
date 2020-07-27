@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import django_heroku
 import os
 from django.conf.global_settings import DATETIME_INPUT_FORMATS
 
@@ -138,3 +139,6 @@ EMAIL_HOST_USER = os.environ.get('REPAIRSQUAD_EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('REPAIRSQUAD_EMAIL_PASSWORD')
 
 DATETIME_INPUT_FORMATS += ["%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M"]
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
