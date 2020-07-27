@@ -1,0 +1,40 @@
+html,
+body {
+    font-family: 'Cuprum', sans-serif !important;
+    /* background-color: #F0EFF4 !important; */
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* .btn {
+    background-color: #7b1fa2 !important;
+} */
+
+main {
+    flex: 1 0 auto;
+}
+
+.sections {
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.title-underline {
+    width: 100%;
+    height: 4px;
+    margin: 0 auto;
+}
+
+.content-section {
+    background: #ffffff !important;
+    padding: 10px 20px !important;
+    border: 1px solid #dddddd !important;
+    border-radius: 3px !important;
+    margin-bottom: 20px !important;
+    margin-top: 60px !important;
+}
