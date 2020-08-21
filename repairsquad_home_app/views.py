@@ -21,14 +21,13 @@ from .forms import (
 
 def contactAndFeedbackView(request):
     if request.method == 'POST':
-        print("------------------------------------------------------------------------------------")
         contact_and_feedback_form = ContactAndFeedbackForm(request.POST)
         if contact_and_feedback_form.is_valid():
-            print("------------------------------------------------------------------------------------")
             contact_and_feedback_form.save()
             name = contact_and_feedback_form.cleaned_data.get('name')
             messages.success(
                 request, f'{name}, Thanks For Contacting Us Our Customer Care Will Get Back To You Soon')
+            
             content = "THERE IS A FEEDBACK FROM A REPAIR SQUAD USER, PLEASE CHECK THE BACK END TO REVIEW"
             html_msg = render_to_string('repairsquad_home_app/email_templates/email.html', context={
                 'username': request.user.username,
@@ -121,33 +120,62 @@ def quickRepairOrderView(request):
                 quick_repair_order_qs.save()
 
                 if(quick_repair_order_qs.req_count > 0 and quick_repair_order_qs.request_status == 'PENDING'):
-                    print(
-                        f' Thanks {name} we got your initial request we will call you soon')
                     messages.info(
                         request, f' Thanks {name} we got your initial request we will call you soon')
-                    return redirect('quick_repair_order')
+                    content = f"THERE IS A REPEATED QUICK REPAIR ORDER REQUEST CHECK THE BACKEND AND PROCESS THE ORDER. NAME:{name} PHONENUMBER:{phoneNumber}"
+                    html_msg = render_to_string('repairsquad_home_app/email_templates/email.html', context={
+                        'username': request.user.username,
+                        'content': content,
+                    })
+                    send_mail(
+                        "REPAIR SQUAD NOTIFICATION",
+                        f"THERE IS A REPEATED QUICK REPAIR ORDER REQUEST CHECK THE BACKEND AND PROCESS THE ORDER. NAME:{name} PHONENUMBER:{phoneNumber}",
+                        settings.EMAIL_HOST_USER,
+                        [settings.EMAIL_HOST_USER, ],
+                        fail_silently=True,
+                        html_message=html_msg,
+                    )
+                    return redirect('home')
 
                 elif (quick_repair_order_qs.request_status == 'CALLED'):
-                    print(
-                        f' Hi, {name} This quick repair order service is meant for first time visitors'
-                        ' only, our system detects that you\'ve'
-                        ' used this service before, you may not get a call'
-                        ' back, we recommend that you sign up, login place your repair order'
-                        ' thanks. the Repair Squad Team'
-                    )
                     messages.warning(request, f' Hi, {name} This quick repair order service is meant for first time visitors'
                                      ' only, our system detects that you\'ve'
                                      ' used this service before, you may not get a call'
                                      ' back, we recommend that you sign up/login and place your repair order '
                                      ' thanks. the Repair Squad Team')
-                    return redirect('repair_order')
+                    content = f"THERE IS A NON_FIRST_TIMER QUICK REPAIR ORDER REQUEST CHECK THE BACKEND AND PROCESS THE ORDER. NAME:{name} PHONENUMBER:{phoneNumber}"
+                    html_msg = render_to_string('repairsquad_home_app/email_templates/email.html', context={
+                        'username': request.user.username,
+                        'content': content,
+                    })
+                    send_mail(
+                        "REPAIR SQUAD NOTIFICATION",
+                        f"THERE IS A NON_FIRST_TIMER QUICK REPAIR ORDER REQUEST CHECK THE BACKEND AND PROCESS THE ORDER. NAME:{name} PHONENUMBER:{phoneNumber}",
+                        settings.EMAIL_HOST_USER,
+                        [settings.EMAIL_HOST_USER, ],
+                        fail_silently=True,
+                        html_message=html_msg,
+                    )
+                    return redirect('home')
 
             else:
                 quick_repair_order_form.save()
-                print(
-                    f'Hi, {name} thanks for choosing to use Repair Squad, we will call you as soon as possible ')
                 messages.success(
                     request, f'Hi, {name} thanks for choosing to use Repair Squad, our customer care will contact you soon ')
+                
+                content = f"THERE IS A FIRST TIME QUICK REPAIR ORDER REQUEST CHECK THE BACKEND AND PROCESS THE ORDER. NAME:{name} PHONENUMBER:{phoneNumber}"
+                html_msg = render_to_string('repairsquad_home_app/email_templates/email.html', context={
+                    'username': request.user.username,
+                    'content': content,
+                })
+                send_mail(
+                    "REPAIR SQUAD NOTIFICATION",
+                    f"THERE IS A FIRST TIME QUICK REPAIR ORDER REQUEST CHECK THE BACKEND AND PROCESS THE ORDER. NAME:{name} PHONENUMBER:{phoneNumber}",
+                    settings.EMAIL_HOST_USER,
+                    [settings.EMAIL_HOST_USER, ],
+                    fail_silently=True,
+                    html_message=html_msg,
+                )
                 return redirect('home')
 
         
